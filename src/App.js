@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
 
-function App() {
+import React from 'react'
+import NavBar from './components/NavBar'
+import CartContainer from './components/CartContainer'
+import { Provider } from 'react-redux'
+import {createStore} from 'redux'
+import reducer from './reducers/reducers'
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+      <NavBar />
+      <CartContainer />
+    </Provider>
+  )
 }
 
-export default App;
+export default App
